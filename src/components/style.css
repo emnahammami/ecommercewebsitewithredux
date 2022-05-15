@@ -1,3 +1,9 @@
+.form-control{
+    width: 400px;
+    text-align: center;
+}
+
+
 .card_style{
     cursor: pointer;
     transition: .3s;
@@ -11,7 +17,11 @@
   .card_style:hover{
       box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.082);
   }
-  
+  .bg-image{
+   
+    background-size: 'cover'
+
+  }
   .iteamsdetails{
       max-width: 800px;
       margin: auto;

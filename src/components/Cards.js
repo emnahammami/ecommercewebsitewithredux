@@ -5,10 +5,10 @@ import Cardsdata from './CardsData'
 import "./style.css";
 import { useDispatch } from 'react-redux';
 import { ADD } from '../redux/actions/action';
+import { Link } from "react-router-dom";
+const Cards = ({data}) => {
 
-const Cards = () => {
 
-  const [data, setData] = useState(Cardsdata);
   // console.log(data);
 
 
@@ -22,7 +22,7 @@ const Cards = () => {
 
   return (
     <div className='container mt-3'>
-      <h2 className='text-center'>Add to Cart Projects</h2>
+      <h2 className='text-center'>Restaurant tunisien</h2>
 
       <div className="row d-flex justify-content-center align-items-center">
         {
@@ -34,12 +34,17 @@ const Cards = () => {
                   <Card.Body>
                     <Card.Title>{element.rname}</Card.Title>
                     <Card.Text>
-                    Price : ₹ {element.price}
+                    Price : {element.price}
                     </Card.Text>
                     <div className="button_div d-flex justify-content-center">
-                    <Button variant="primary"  
+                    <Link to={`/detail/${element.id}`}>  <Button variant="dark"  
+                    
+                     className='col-lg-12'>Details</Button></Link>
+                     </div><br></br>
+                     <div className="button_div d-flex justify-content-center">
+                   <Link to={`/cart/${element.id}`}>  <Button variant="secondary"  
                       onClick={()=> send(element)}
-                     className='col-lg-12'>Add to Cart</Button>
+                     className='col-lg-12'>Add to Cart</Button></Link>
                     </div>
                   
                   </Card.Body>

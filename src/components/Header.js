@@ -9,9 +9,10 @@ import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Table from 'react-bootstrap/esm/Table';
 import { DLT } from '../redux/actions/action';
-
-const Header = () => {
-
+import { MDBCol } from "mdbreact";
+import img from "../components/images/img.png"
+const Header = ({rname,ChangeRname,authLogin}) => {
+ 
     const [price,setPrice] = useState(0);
     // console.log(price);
 
@@ -46,16 +47,21 @@ const Header = () => {
     useEffect(()=>{
         total();
     },[total])
-
+console.log(rname)
+if (authLogin){
     return (
-        <>
-            <Navbar bg="dark" variant="dark" style={{ height: "60px" }}>
+        <><div>
+            <Navbar bg="grey" variant="dark" style={{ height: "60px" }}>
+            <img className='img' src={img}/>
                 <Container>
-                    <NavLink to="/" className="text-decoration-none text-light mx-3">Add to Cart</NavLink>
+         
+            
                     <Nav className="me-auto">
-                        <NavLink to="/" className="text-decoration-none text-light">Home</NavLink>
+                        <NavLink to="/home" className="text-decoration-none " style={{ color:"black" }}>Home</NavLink>
                     </Nav>
-
+                    <MDBCol md="6">
+      <input className="form-control" type="text"  onChange={ChangeRname} value={rname} placeholder="Search" aria-label="Search" />
+    </MDBCol>
                     <Badge badgeContent={getdata.length} color="primary"
                         id="basic-button"
                         aria-controls={open ? 'basic-menu' : undefined}
@@ -63,8 +69,9 @@ const Header = () => {
                         aria-expanded={open ? 'true' : undefined}
                         onClick={handleClick}
                     >
-                        <i class="fa-solid fa-cart-shopping text-light" style={{ fontSize: 25, cursor: "pointer" }}></i>
+                        <i class="fa-solid fa-cart-shopping " style={{ fontSize: 25, cursor: "pointer"  }}></i>
                     </Badge>
+                    
 
                 </Container>
 
@@ -102,7 +109,7 @@ const Header = () => {
                                                         </td>
                                                         <td>
                                                             <p>{e.rname}</p>
-                                                            <p>Price : ₹{e.price}</p>
+                                                            <p>Price : {e.price}</p>
                                                             <p>Quantity : {e.qnty}</p>
                                                             <p style={{color:"red",fontSize:20,cursor:"pointer"}} onClick={()=>dlt(e.id)}>
                                                                 <i className='fas fa-trash smalltrash'></i>
@@ -117,7 +124,7 @@ const Header = () => {
                                             )
                                         })
                                     }
-                                    <p className='text-center'>Total :₹ {price}</p>
+                                    <p className='text-center'>Total : {price}</p>
                                 </tbody>
                             </Table>
                         </div>:
@@ -132,9 +139,40 @@ const Header = () => {
                     }
 
                 </Menu>
+                <i class="bi bi-x-octagon"></i>
+
             </Navbar>
-        </>
-    )
+            
+          <div
+    className='p-5 text-center bg-image'
+    style={{ backgroundImage: "url('https://indiater.com/wp-content/uploads/2019/11/food-banner-design-template-free-psd-download.jpg')", height: 400, backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    backgroundSize: 'cover'}}
+  >
+    <div className='mask' style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)' }}>
+      <div className='d-flex justify-content-center align-items-center h-100' >
+        <div className='text-white'>
+          
+         
+        </div>
+      </div>
+    </div></div></div></>
+    )}else{
+        return(<> <div
+            className='p-5 text-center bg-image'
+            style={{ backgroundImage: "url('https://indiater.com/wp-content/uploads/2019/11/food-banner-design-template-free-psd-download.jpg')", height: 400, backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+            backgroundSize: 'cover'}}
+          >
+            <div className='mask' style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)' }}>
+              <div className='d-flex justify-content-center align-items-center h-100' >
+                <div className='text-white'>
+                  
+                 
+                </div>
+              </div>
+            </div></div></>)
+    }
 }
 
 export default Header
