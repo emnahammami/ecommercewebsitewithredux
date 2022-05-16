@@ -5,13 +5,14 @@ import Badge from '@mui/material/Badge';
 import Nav from 'react-bootstrap/Nav'
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { NavLink } from 'react-router-dom';
+import { NavLink,Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Table from 'react-bootstrap/esm/Table';
 import { DLT } from '../redux/actions/action';
 import { MDBCol } from "mdbreact";
 import img from "../components/images/img.png"
-const Header = ({rname,ChangeRname,authLogin}) => {
+import image from "./images/logout.png"
+const Header = ({rname,ChangeRname,authLogin,Disconnect}) => {
  
     const [price,setPrice] = useState(0);
     // console.log(price);
@@ -52,12 +53,17 @@ if (authLogin){
     return (
         <><div>
             <Navbar bg="grey" variant="dark" style={{ height: "60px" }}>
-            <img className='img' src={img}/>
+            <Link to={`/home`}> <img className='img' src={img} /></Link>
                 <Container>
          
             
                     <Nav className="me-auto">
+                  
                         <NavLink to="/home" className="text-decoration-none " style={{ color:"black" }}>Home</NavLink>
+                  
+                  
+                        <NavLink to="/Avis" className="text-decoration-none " style={{ color:"black" }}>Avis</NavLink>
+                  
                     </Nav>
                     <MDBCol md="6">
       <input className="form-control" type="text"  onChange={ChangeRname} value={rname} placeholder="Search" aria-label="Search" />
@@ -69,8 +75,12 @@ if (authLogin){
                         aria-expanded={open ? 'true' : undefined}
                         onClick={handleClick}
                     >
+                       
                         <i class="fa-solid fa-cart-shopping " style={{ fontSize: 25, cursor: "pointer"  }}></i>
+                    
+                    
                     </Badge>
+                
                     
 
                 </Container>
@@ -135,11 +145,13 @@ if (authLogin){
                      style={{position:"absolute",top:2,right:20,fontSize:23,cursor:"pointer"}}></i>
                     <p style={{fontSize:22}}>Your carts is empty</p>
                     <img src="./cart.gif" alt="" className='emptycart_img' style={{width:"5rem",padding:10}} />
+                   
                    </div>
                     }
 
                 </Menu>
                 <i class="bi bi-x-octagon"></i>
+                <Link to={`/`}>    <img src={image} alt="" className='logout' style={{width:"3rem",padding:10}}  onClick={Disconnect}/></Link>
 
             </Navbar>
             
